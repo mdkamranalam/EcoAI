@@ -18,11 +18,11 @@ export function EnergyStep({ register, errors, energyValue, setEnergyValue }: En
   return (
     <Card>
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-4">
-          <Zap className="w-8 h-8 text-emerald-600" />
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-lime-400/20 rounded-full mb-4 glow-lime">
+          <Zap className="w-8 h-8 text-lime-400" />
         </div>
-        <h2 className="text-3xl font-bold text-slate-800 mb-2">🏠 Your Home Energy</h2>
-        <p className="text-slate-600">
+        <h2 className="text-3xl font-bold text-white mb-2">🏠 Your Home Energy</h2>
+        <p className="text-slate-400">
           Tell us about your monthly electricity consumption
         </p>
       </div>
@@ -51,7 +51,7 @@ export function EnergyStep({ register, errors, energyValue, setEnergyValue }: En
             icon={<Zap className="w-5 h-5" />}
             error={errors.energy_kwh?.message as string}
           />
-          <p className="mt-2 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-slate-400">
             💡 Average US household: 800-1000 kWh/month
           </p>
         </div>

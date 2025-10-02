@@ -120,10 +120,10 @@ export function CarbonFootprintForm() {
                     w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg
                     transition-all duration-300
                     ${step === currentStep
-                      ? 'bg-emerald-600 text-white scale-110 shadow-lg'
+                      ? 'bg-lime-400 text-slate-900 scale-110 shadow-lg glow-lime'
                       : step < currentStep
-                      ? 'bg-emerald-500 text-white'
-                      : 'bg-slate-200 text-slate-400'
+                      ? 'bg-lime-500 text-slate-900'
+                      : 'bg-slate-700 text-slate-400'
                     }
                   `}
                 >
@@ -135,7 +135,7 @@ export function CarbonFootprintForm() {
                     step
                   )}
                 </div>
-                <span className="text-xs mt-2 text-slate-600 font-medium">
+                <span className="text-xs mt-2 text-slate-300 font-medium">
                   {step === 1 && 'Energy'}
                   {step === 2 && 'Travel'}
                   {step === 3 && 'Diet'}
@@ -145,14 +145,14 @@ export function CarbonFootprintForm() {
                 <div
                   className={`
                     flex-1 h-1 mx-2 rounded transition-all duration-300
-                    ${step < currentStep ? 'bg-emerald-500' : 'bg-slate-200'}
+                    ${step < currentStep ? 'bg-lime-400' : 'bg-slate-700'}
                   `}
                 />
               )}
             </React.Fragment>
           ))}
         </div>
-        <p className="text-center text-slate-600">
+        <p className="text-center text-slate-400">
           Step {currentStep} of {totalSteps}
         </p>
       </div>
@@ -188,8 +188,8 @@ export function CarbonFootprintForm() {
 
         {/* Error Message */}
         {apiError && (
-          <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-red-800 text-sm">
+          <div className="mt-6 p-4 bg-red-900/20 border border-red-400/30 rounded-lg">
+            <p className="text-red-400 text-sm">
               <strong>Error:</strong> {apiError}
             </p>
           </div>

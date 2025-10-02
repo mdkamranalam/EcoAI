@@ -19,9 +19,9 @@ export function Button({
   const baseStyles = 'px-6 py-3 rounded-lg font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'
   
   const variantStyles = {
-    primary: 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-md hover:shadow-lg',
-    secondary: 'bg-slate-200 hover:bg-slate-300 text-slate-800',
-    outline: 'border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50'
+    primary: 'bg-lime-400 hover:bg-lime-500 text-slate-900 shadow-md hover:shadow-lg glow-lime-hover font-bold',
+    secondary: 'bg-slate-700 hover:bg-slate-600 text-slate-200 hover:glow-lime',
+    outline: 'border-2 border-lime-400 text-lime-400 hover:bg-lime-400 hover:text-slate-900 glow-lime-hover'
   }
 
   return (

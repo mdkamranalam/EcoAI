@@ -12,7 +12,7 @@ export function Input({ label, error, icon, className = '', ...props }: InputPro
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-sm font-medium text-slate-700 mb-2">
+        <label className="block text-sm font-medium text-slate-200 mb-2">
           {label}
         </label>
       )}
@@ -24,18 +24,18 @@ export function Input({ label, error, icon, className = '', ...props }: InputPro
         )}
         <input
           className={`
-            w-full px-4 py-3 rounded-lg border-2 border-slate-200
-            focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200
-            transition-all duration-200 outline-none
+            w-full px-4 py-3 rounded-lg border-2 border-slate-700 bg-slate-800
+            focus:border-lime-400 focus:ring-2 focus:ring-lime-400/30
+            transition-all duration-200 outline-none text-slate-200
             ${icon ? 'pl-10' : ''}
-            ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : ''}
+            ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500/30' : ''}
             ${className}
           `}
           {...props}
         />
       </div>
       {error && (
-        <p className="mt-1 text-sm text-red-600">{error}</p>
+        <p className="mt-1 text-sm text-red-400">{error}</p>
       )}
     </div>
   )

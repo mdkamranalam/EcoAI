@@ -2,14 +2,26 @@
 
 This is the frontend application for EcoAI - a GenAI-powered climate action advisor built with Next.js 14, TypeScript, and Tailwind CSS.
 
+## ✨ UI/UX Design
+
+**Theme**: Sleek & Tech-Forward Dark Mode
+- **Primary Background**: `slate-900` (RGB: 15, 23, 42)
+- **Accent Color**: `lime-400` (RGB: 163, 230, 53)
+- **Text Colors**: `white`, `slate-200`, `slate-400`
+- **Card Backgrounds**: `slate-800` with `slate-700` borders
+- **Special Effects**: Glow effects on lime-400 elements using custom utility classes
+
 ## Features
 
-- 🌍 **Energy Consumption Calculator**: Input your energy usage across multiple categories (electricity, transportation, appliances, etc.)
-- 📊 **Interactive Visualizations**: Beautiful charts showing carbon footprint breakdown using Recharts
-- 🤖 **AI-Powered Recommendations**: Get personalized suggestions to reduce your carbon footprint
-- 💰 **Savings Calculator**: See potential cost savings alongside environmental benefits
+- 🌍 **3-Step Wizard Form**: Intuitive multi-step carbon footprint calculator
+  - Step 1: Energy consumption (electricity in kWh)
+  - Step 2: Travel footprint (miles driven per week)
+  - Step 3: Dietary choices (meat consumption frequency)
+- 📊 **Interactive Visualizations**: Beautiful dark-themed charts showing carbon footprint breakdown using Recharts
+- 🤖 **AI-Powered Recommendations**: Get personalized sustainability plans
+- 🎨 **Modern Dark UI**: Sleek tech-forward design with lime-400 accents and glow effects
 - 📱 **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
-- ♻️ **Real-time Analysis**: Instant feedback on your energy consumption patterns
+- ♻️ **Real-time Analysis**: Instant feedback on your carbon footprint
 
 ## Tech Stack
 
@@ -54,47 +66,44 @@ npm start
 ```
 frontend/
 ├── app/
-│   ├── layout.tsx          # Root layout
-│   ├── page.tsx            # Home page
-│   └── globals.css         # Global styles
+│   ├── layout.tsx          # Root layout with dark theme
+│   ├── page.tsx            # Home page with hero section
+│   └── globals.css         # Global styles + custom glow utilities
 ├── components/
-│   ├── EnergyForm.tsx      # Main calculator form
-│   └── ResultsDisplay.tsx  # Results visualization
-├── public/                 # Static assets
+│   ├── CarbonFootprintForm.tsx  # Main wizard container with progress indicator
+│   ├── ResultsDashboard.tsx     # Results visualization with charts
+│   ├── form-steps/
+│   │   ├── EnergyStep.tsx       # Step 1: Energy consumption input
+│   │   ├── TravelStep.tsx       # Step 2: Travel/driving distance
+│   │   └── DietStep.tsx         # Step 3: Diet selection with cards
+│   └── ui/
+│       ├── Button.tsx           # Reusable button component
+│       ├── Input.tsx            # Input with validation
+│       ├── Slider.tsx           # Range slider component
+│       └── Card.tsx             # Container component
+├── public/                      # Static assets
 ├── package.json
 ├── tsconfig.json
 ├── tailwind.config.js
 └── next.config.js
 ```
 
-## Form Categories
+## Calculator Form
 
-The energy calculator tracks consumption across these categories:
+The 3-step wizard tracks:
 
-### 1. Electricity Usage
-- Monthly electricity consumption (kWh)
-- Water heating usage (kWh/month)
+### Step 1: Energy Consumption
+- Weekly electricity usage (kWh)
+- Slider + manual input for precision
 
-### 2. Transportation
+### Step 2: Travel Footprint
 - Weekly miles driven
-- Vehicle type (gasoline, hybrid, electric)
+- Average US driver: 200-300 miles/week
 
-### 3. Home Appliances
-- Air conditioning usage (hours/day)
-- Number of refrigerators
-- Heating usage (hours/day)
-
-### 4. Lighting
-- Daily lighting hours
-- LED bulb usage
-
-### 5. Water & Laundry
-- Washing machine loads per week
-- Dishwasher loads per week
-
-### 6. Diet & Lifestyle
-- Diet type (meat-heavy, balanced, vegetarian, vegan)
-- Recycling habits
+### Step 3: Dietary Choices
+- Meat consumption frequency (servings/week)
+- Options: Never (0), Rarely (1-3), Moderate (4-7), Daily (7+)
+- Visual card selection interface
 
 ## Carbon Calculation
 
@@ -123,25 +132,31 @@ const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/analyze`, 
 
 ## Customization
 
-### Colors
+### Dark Theme Colors
 
-Edit `tailwind.config.js` to customize the color scheme:
+The app uses a custom dark theme defined in `globals.css` and Tailwind:
 
-```javascript
-theme: {
-  extend: {
-    colors: {
-      primary: {
-        // Your custom colors
-      },
-    },
-  },
+```css
+/* globals.css */
+:root {
+  --background: 15 23 42;      /* slate-900 */
+  --foreground: 226 232 240;   /* slate-200 */
+}
+
+/* Custom glow effects */
+.glow-lime {
+  box-shadow: 0 0 20px rgba(163, 230, 53, 0.3);
+}
+.glow-lime-hover:hover {
+  box-shadow: 0 0 25px rgba(163, 230, 53, 0.5);
 }
 ```
 
+Edit these values in `globals.css` to customize the theme.
+
 ### Carbon Factors
 
-Modify conversion factors in `EnergyForm.tsx` under the `calculateFootprint` function to match your region's emission factors.
+The backend API handles carbon calculations. Frontend focuses on data collection and visualization.
 
 ## Deployment
 
