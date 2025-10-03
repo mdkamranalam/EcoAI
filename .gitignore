@@ -1,0 +1,52 @@
+# .gitignore content
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Docker
+*.dockerignore
+docker-compose.override.yml
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs and caches
+logs/
+*.log
+.pytest_cache/
+.coverage
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Misc
+tmp/
+temp/
+file.txt

@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+transformers
+sentence-transformers
+langchain
+langchain-community
+langchain-cerebras
+langchain-huggingface
+huggingface-hub
+cerebras_cloud_sdk
+faiss-cpu
+pypdf
+pandas
+python-dotenv
