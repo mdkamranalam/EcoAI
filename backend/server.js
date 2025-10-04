@@ -27,7 +27,7 @@ function calculateFootprint(energy_kwh, miles_driven, meat_consumption) {
 
 //  AI-generated plan
 function generatePlan(responseplans) {
-  const points = responseplans.match(/^\s*\* (.+)$/gm).map(p => p.replace(/^\s*\* /, ""));
+  const points =  responseplans.match(/^\s*\* (.+)$/gm).map(p => p.replace(/^\s*\* /, ""));
   console.log("points came",points);
   return points.slice(0, Math.min(5, Math.ceil(points.length / 2)));
 }
