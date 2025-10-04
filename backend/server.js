@@ -7,7 +7,13 @@ const app = express();
 const PORT = 3001;
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
 
 // Mock carbon footprint calculation
@@ -86,7 +92,9 @@ app.post("/analyze", async (req, res) => {
     const travelPercent = (footprint.travel / footprint.total) * 100;
     const foodPercent = (footprint.food / footprint.total) * 100;
 
-    const apiResponse = await fetch(`${process.env.FASTAPI}/process`, {
+    const aiUrl = process.env.AI_URL || "http://localhost:8000";
+
+    const apiResponse = await fetch(`${aiUrl}/process`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(req.body),
