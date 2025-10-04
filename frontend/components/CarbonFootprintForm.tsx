@@ -83,7 +83,7 @@ export function CarbonFootprintForm() {
       console.log("Submitting data:", payload);
 
       const response = await axios.post<ApiResponse>(
-        "http://localhost:3001/analyze",
+        `${process.env.NEXT_PUBLIC_API_URL}/analyze`,
         payload,
         {
           headers: {
