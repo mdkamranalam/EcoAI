@@ -25,47 +25,46 @@ function calculateFootprint(energy_kwh, miles_driven, meat_consumption) {
   };
 }
 
-// Mock AI-generated plan
-function generatePlan(footprint) {
-  const plans = [
-    "Switch to LED bulbs throughout your home - save up to 0.3 tons CO₂/year",
-    "Reduce meat consumption by 2 servings per week - save 0.7 tons CO₂/year",
-    "Carpool or use public transit 2 days per week - save 0.5 tons CO₂/year",
-    "Install a programmable thermostat - save 0.4 tons CO₂/year",
-    "Switch to renewable energy provider - reduce emissions by 50%"
-  ];
-  
-  return plans.slice(0, Math.min(5, Math.ceil(footprint.total / 2)));
+//  AI-generated plan
+function generatePlan(responseplans) {
+  const points =  responseplans.match(/^\s*\* (.+)$/gm).map(p => p.replace(/^\s*\* /, ""));
+  console.log("points came",points);
+  return points.slice(0, Math.min(5, Math.ceil(points.length / 2)));
 }
 
 // Mock simulation
-function generateSimulation(footprint) {
-  const scenarios = [
-    {
-      scenario: "Switch to electric vehicle",
-      savings: footprint.travel * 0.7,
-      newFootprint: footprint.total - (footprint.travel * 0.7)
-    },
-    {
-      scenario: "Reduce energy consumption by 20%",
-      savings: footprint.energy * 0.2,
-      newFootprint: footprint.total - (footprint.energy * 0.2)
-    },
-    {
-      scenario: "Adopt plant-based diet 3 days/week",
-      savings: footprint.food * 0.4,
-      newFootprint: footprint.total - (footprint.food * 0.4)
-    }
-  ];
+function generateSimulation(footprint,simulations) {
+
+  for(let scene in simulations){
+    console.log(scene, simulations[scene]);
+    
+
+  }
+    const scenarios = [
+      {
+        scenario: "Switch to electric vehicle",
+        savings: footprint.travel * 0.7,
+        newFootprint: footprint.total - (footprint.travel * 0.7)
+      },
+      {
+        scenario: "Reduce energy consumption by 20%",
+        savings: footprint.energy * 0.2,
+        newFootprint: footprint.total - (footprint.energy * 0.2)
+      },
+      {
+        scenario: "Adopt plant-based diet 3 days/week",
+        savings: footprint.food * 0.4,
+        newFootprint: footprint.total - (footprint.food * 0.4)
+      }
+    ];
   
   return scenarios[Math.floor(Math.random() * scenarios.length)];
 }
 
 // API endpoint
-app.post('/analyze', (req, res) => {
+app.post('/analyze', async (req, res) => {
   try {
     const { energy_kwh, miles_driven, meat_consumption } = req.body;
-    
     // Validation
     if (!energy_kwh || !miles_driven || meat_consumption === undefined) {
       return res.status(400).json({ 
@@ -81,6 +80,20 @@ app.post('/analyze', (req, res) => {
     const travelPercent = (footprint.travel / footprint.total) * 100;
     const foodPercent = (footprint.food / footprint.total) * 100;
     
+     const apiResponse = await fetch("http://127.0.0.1:8000/process", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(req.body)
+    });
+    const apiData = await apiResponse.json();
+    console.log("API Data:", apiData);
+    
+    // Extract data from AI service response
+    // const responseplans = apiData.plans
+    const responsefootprint = apiData.footprint;
+    const plan = apiData.plan;
+    const simulation = apiData.simulation;
+
     // Generate response
     const response = {
       totalFootprint: parseFloat(footprint.total.toFixed(2)),
@@ -89,8 +102,8 @@ app.post('/analyze', (req, res) => {
         travel: parseFloat(travelPercent.toFixed(1)),
         food: parseFloat(foodPercent.toFixed(1))
       },
-      plan: generatePlan(footprint),
-      simulation: generateSimulation(footprint)
+      plan: generatePlan(plan),
+      simulation: generateSimulation(footprint,simulation)
     };
     
     console.log('Request:', req.body);
