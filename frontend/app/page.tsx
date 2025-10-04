@@ -1,5 +1,5 @@
-import { CarbonFootprintForm } from '../components/CarbonFootprintForm'
-import { Leaf, Sparkles } from 'lucide-react'
+import { CarbonFootprintForm } from "../components/CarbonFootprintForm";
+import { Leaf, Sparkles } from "lucide-react";
 
 export default function Home() {
   return (
@@ -28,14 +28,16 @@ export default function Home() {
             <Sparkles className="w-4 h-4" />
             <span>AI-Powered Carbon Footprint Analysis</span>
           </div>
-          
+
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
             Understand Your
             <span className="text-lime-400"> Carbon Impact</span>
           </h2>
-          
+
           <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-8">
-            Get personalized insights into your carbon footprint and receive AI-generated recommendations to help you make a real difference for our planet.
+            Get personalized insights into your carbon footprint and receive
+            AI-generated recommendations to help you make a real difference for
+            our planet.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400 mb-8">
@@ -76,6 +78,5 @@ export default function Home() {
         </div>
       </footer>
     </main>
-  )
+  );
 }
-
