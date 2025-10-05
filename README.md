@@ -18,10 +18,7 @@
 _Diagram created with Draw.io, showing Next.js → Express → Python AI flow._
 
 ## Project Demo Video
-![ecoAI Demo Video](docs/project_demo_video.mp4)
-
-## Project Demo Video
-![EcoAI Demo Video](https://github.com/user-attachments/assets/2c68898f-cf4e-40b0-9731-036114070b18)
+![EcoAI Demo Video](docs/project_demo_video.gif)
 
 ## Learning & Growth
 
