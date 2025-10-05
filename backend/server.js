@@ -7,13 +7,7 @@ const app = express();
 const PORT = 3001;
 
 // Middleware
-app.use(
-  cors({
-    origin: ["http://localhost:3000"],
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 // Mock carbon footprint calculation
